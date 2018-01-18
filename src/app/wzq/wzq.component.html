@@ -1,0 +1,15 @@
+
+<div align="center" style="padding-left: 30%">
+<div *ngFor="let yData of wzqArr;let y = index" style="clear: both">
+  <div *ngFor="let xData of yData;let x = index" [ngClass]="{'empty':xData.color === 'none','black':xData.color === 'black','white':xData.color==='white'}" (click)="check(y,x)">
+
+  </div>
+</div>
+<div class="over" *ngIf="game.over">
+  <div>
+    <p>{{game.info}}</p>
+    <hr>
+    <button (click)="clear()">重新开始</button>
+  </div>
+</div>
+</div>
