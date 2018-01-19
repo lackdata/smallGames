@@ -9,7 +9,7 @@ export class WzqComponent implements OnInit {
   wzqArr: any[] = [];
   inputColor = 'black';
   game = {over: false, info: ''};
-  index:number;
+  index:number = 0;
 
   constructor() {
     this.clear();
