@@ -16,11 +16,10 @@ export class WzqComponent implements OnInit {
   }
 
   check(y, x) {
-    if (this.wzqArr[y][x].empty) {
+    if (this.wzqArr[y][x].color !== 'none') {
       return;
     }
     this.wzqArr[y][x].color = this.inputColor;
-    this.wzqArr[y][x].empty = true;
     this.checkWin(this.checkNum(y, x,'col-1','line-1'), this.checkNum(y, x,'col+1','line+1'))
     this.checkWin(this.checkNum(y, x,'col-1','line'), this.checkNum(y, x,'col+1','line'))
     this.checkWin(this.checkNum(y, x,'col-1','line+1'), this.checkNum(y, x,'col+1','line-1'))
@@ -42,14 +41,14 @@ export class WzqComponent implements OnInit {
     for (let i = 0; i < 16; i++) {
       let lineArr: any[] = [];
       for (let x = 0; x < 16; x++) {
-        lineArr.push({color: 'none', empty: false});
+        lineArr.push({color: 'none'});
       }
       this.wzqArr.push(lineArr);
     }
   }
 
   checkNum(col, line,fn1,fn2) {
-      if ( eval(fn1) < 0 || eval(fn2) < 0 ||eval(fn1) >=16 ||eval(fn2)>= 16|| this.wzqArr[eval(fn1)][eval(fn2)].empty === false || this.wzqArr[eval(fn1)][eval(fn2)].color !== this.inputColor) {
+      if ( eval(fn1) < 0 || eval(fn2) < 0 ||eval(fn1) >=16 ||eval(fn2)>= 16|| this.wzqArr[eval(fn1)][eval(fn2)].color !== this.inputColor) {
         return;
       } else {
         this.index++;
