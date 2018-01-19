@@ -1,0 +1,21 @@
+.empty{
+  //border: 1px solid rebeccapurple;
+  width: 8px;
+  height: 8px;
+  float: left;
+}
+.snakeBody{
+  //border: 1px solid rebeccapurple;
+  border-radius: 50%;
+  background: black;
+  width: 8px;
+  height: 8px;
+  float: left;
+}
+.food{
+  //border: 1px solid rebeccapurple;
+  background: yellow;
+  width: 8px;
+  height: 8px;
+  float: left;
+}

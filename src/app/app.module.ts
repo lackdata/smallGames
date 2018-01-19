@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { WzqComponent } from './wzq/wzq.component';
+import { SnakeComponent } from './snake/snake.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    WzqComponent
+    WzqComponent,
+    SnakeComponent
   ],
   imports: [
     BrowserModule,

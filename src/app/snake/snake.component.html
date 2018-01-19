@@ -1,0 +1,8 @@
+<div align="center" style="padding-left: 30%;">
+  <div style="float: left;overflow: hidden;border: 1px solid red">
+  <div *ngFor="let yData of areaArr;let y = index" style="clear: both">
+    <div *ngFor="let xData of yData;let x = index" [ngClass]="{'empty':xData.inner === 'none','snakeBody':xData.inner === 'snakeBody','food':xData.inner ==='food'}">
+    </div>
+  </div>
+  </div>
+</div>
