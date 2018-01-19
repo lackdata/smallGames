@@ -9,7 +9,7 @@ export class WzqComponent implements OnInit {
   wzqArr: any[] = [];
   inputColor = 'black';
   game = {over: false, info: ''};
-  index = 0;
+  index:number;
 
   constructor() {
     this.clear();
@@ -20,10 +20,10 @@ export class WzqComponent implements OnInit {
       return;
     }
     this.wzqArr[y][x].color = this.inputColor;
-    this.checkWin(this.checkNum(y, x,'col-1','line-1'), this.checkNum(y, x,'col+1','line+1'))
-    this.checkWin(this.checkNum(y, x,'col-1','line'), this.checkNum(y, x,'col+1','line'))
-    this.checkWin(this.checkNum(y, x,'col-1','line+1'), this.checkNum(y, x,'col+1','line-1'))
-    this.checkWin(this.checkNum(y, x,'col','line-1'), this.checkNum(y, x,'col','line+1'))
+    this.checkWin(this.checkNum(y, x,'col-1','line-1'), this.checkNum(y, x,'col+1','line+1'))||
+    this.checkWin(this.checkNum(y, x,'col-1','line'), this.checkNum(y, x,'col+1','line'))||
+    this.checkWin(this.checkNum(y, x,'col-1','line+1'), this.checkNum(y, x,'col+1','line-1'))||
+    this.checkWin(this.checkNum(y, x,'col','line-1'), this.checkNum(y, x,'col','line+1'));
     this.inputColor === 'black' ? this.inputColor = 'white' : this.inputColor = 'black';
   }
 
@@ -31,6 +31,8 @@ export class WzqComponent implements OnInit {
     if (this.index === 4) {
       this.game.over = true;
       this.inputColor === 'white' ? this.game.info = '白子赢了' : this.game.info = '黑子赢了';
+      this.index = 0;
+      return true;
     }
     this.index = 0;
   }
