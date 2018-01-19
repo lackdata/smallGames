@@ -51,7 +51,7 @@ export class WzqComponent implements OnInit {
   }
 
   checkNum(col, line,fn1,fn2) {
-      if ( eval(fn1) < 0 || eval(fn2) < 0 || this.wzqArr[eval(fn1)][eval(fn2)].empty === false || this.wzqArr[eval(fn1)][eval(fn2)].color !== this.inputColor) {
+      if ( eval(fn1) < 0 || eval(fn2) < 0 ||eval(fn1) >=16 ||eval(fn2)>= 16|| this.wzqArr[eval(fn1)][eval(fn2)].empty === false || this.wzqArr[eval(fn1)][eval(fn2)].color !== this.inputColor) {
         return;
       } else {
         this.index1++;
