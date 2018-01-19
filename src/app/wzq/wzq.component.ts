@@ -9,8 +9,7 @@ export class WzqComponent implements OnInit {
   wzqArr: any[] = [];
   inputColor = 'black';
   game = {over: false, info: ''};
-  index1 = 0;
-  index2 = 0;
+  index = 0;
 
   constructor() {
     this.clear();
@@ -29,13 +28,12 @@ export class WzqComponent implements OnInit {
     this.inputColor === 'black' ? this.inputColor = 'white' : this.inputColor = 'black';
   }
 
-  checkWin(index1Fn, index2Fn) {
-    if (this.index1 + this.index2 === 4) {
+  checkWin(indexFn, index2Fn) {
+    if (this.index === 4) {
       this.game.over = true;
       this.inputColor === 'white' ? this.game.info = '白子赢了' : this.game.info = '黑子赢了';
     }
-    this.index1 = 0;
-    this.index2 = 0;
+    this.index = 0;
   }
 
   clear() {
@@ -54,7 +52,7 @@ export class WzqComponent implements OnInit {
       if ( eval(fn1) < 0 || eval(fn2) < 0 ||eval(fn1) >=16 ||eval(fn2)>= 16|| this.wzqArr[eval(fn1)][eval(fn2)].empty === false || this.wzqArr[eval(fn1)][eval(fn2)].color !== this.inputColor) {
         return;
       } else {
-        this.index1++;
+        this.index++;
         this.checkNum(eval(fn1), eval(fn2),fn1,fn2);
       }
     }
