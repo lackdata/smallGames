@@ -28,7 +28,7 @@ export class WzqComponent implements OnInit {
   }
 
   checkWin(indexFn, index2Fn) {
-    if (this.index === 4) {
+    if (this.index >= 4) {
       this.game.over = true;
       this.inputColor === 'white' ? this.game.info = '白子赢了' : this.game.info = '黑子赢了';
       this.index = 0;
