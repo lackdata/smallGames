@@ -9,7 +9,7 @@ export class WzqComponent implements OnInit {
   wzqArr: any[] = [];
   inputColor = 'black';
   game = {over: false, info: ''};
-  index:number = 0;
+  index: number = 0;
 
   constructor() {
     this.clear();
@@ -20,10 +20,10 @@ export class WzqComponent implements OnInit {
       return;
     }
     this.wzqArr[y][x].color = this.inputColor;
-    this.checkWin(this.checkNum(y, x,'col-1','line-1'), this.checkNum(y, x,'col+1','line+1'))||
-    this.checkWin(this.checkNum(y, x,'col-1','line'), this.checkNum(y, x,'col+1','line'))||
-    this.checkWin(this.checkNum(y, x,'col-1','line+1'), this.checkNum(y, x,'col+1','line-1'))||
-    this.checkWin(this.checkNum(y, x,'col','line-1'), this.checkNum(y, x,'col','line+1'));
+    this.checkWin(this.checkNum(y, x, a => a - 1, b => b - 1), this.checkNum(y, x, a => a + 1, b => b + 1)) ||
+    this.checkWin(this.checkNum(y, x, a => a - 1, b => b), this.checkNum(y, x, a => a + 1, b => b)) ||
+    this.checkWin(this.checkNum(y, x, a => a - 1, b => b + 1), this.checkNum(y, x, a => a + 1, b => b - 1)) ||
+    this.checkWin(this.checkNum(y, x, a => a, b => b - 1), this.checkNum(y, x, a => a, b => b + 1));
     this.inputColor === 'black' ? this.inputColor = 'white' : this.inputColor = 'black';
   }
 
@@ -41,7 +41,7 @@ export class WzqComponent implements OnInit {
     this.game = {over: false, info: ''};
     this.wzqArr = [];
     for (let i = 0; i < 16; i++) {
-      let lineArr: any[] = [];
+      const lineArr: any[] = [];
       for (let x = 0; x < 16; x++) {
         lineArr.push({color: 'none'});
       }
@@ -49,14 +49,14 @@ export class WzqComponent implements OnInit {
     }
   }
 
-  checkNum(col, line,fn1,fn2) {
-      if ( eval(fn1) < 0 || eval(fn2) < 0 ||eval(fn1) >=16 ||eval(fn2)>= 16|| this.wzqArr[eval(fn1)][eval(fn2)].color !== this.inputColor) {
-        return;
-      } else {
-        this.index++;
-        this.checkNum(eval(fn1), eval(fn2),fn1,fn2);
-      }
+  checkNum(col, line, fn1, fn2) {
+    if (fn1(col) < 0 || fn2(line) < 0 || fn1(col) >= 16 || fn2(line) >= 16 || this.wzqArr[fn1(col)][fn2(line)].color !== this.inputColor) {
+      return;
+    } else {
+      this.index++;
+      this.checkNum(fn1(col), fn2(line), fn1, fn2);
     }
+  }
 
   ngOnInit() {
   }
